@@ -1,5 +1,8 @@
 Particle[] boom;
 boolean shot = false;
+int laserY = 600;
+boolean laserShot = false;
+boolean canSee = true;
 void setup()
 {
 	size(600,600);
@@ -11,6 +14,20 @@ void setup()
 void draw()
 {
 	background(0);
+	if (canSee == true) {
+		//fill(187, 237, 237);
+		//rect(295,laserY-5,17,110,13);
+		fill(61, 191, 191);
+		rect(300,laserY,7,100,5);
+	}
+	if (laserShot == true) {
+		laserY-=5;
+	}
+	if (laserY <= 330) {
+		shot = true;
+		canSee = false;
+	}
+
 	if (shot == true) {
 		for (int i = 0; i < boom.length; i++) {
 			boom[i].show();
@@ -18,14 +35,22 @@ void draw()
 		}
 	}
 	else {
-		strokeWeight(4);
+		strokeWeight(2);
+		stroke(0);
 		fill(150, 146, 135);
 		ellipse(300,200,300,300);
-		curve(150, 180, 150, 180, 450 , 230, 450, 180);
+		curve(200, 180, 160, 250, 450 , 230, 450, 180);
+		fill(77, 76, 74);
+		strokeWeight(1);
+		ellipse(360,150,100,100);
+		noStroke();
+		fill(59, 58, 56);
+		ellipse(360,150,30,30);
 	}
 }
 void mousePressed()
 {
+	laserShot = true;
 }
 class Particle
 {
@@ -38,7 +63,7 @@ class Particle
 		mySpeed = Math.random()*5;
 		myX = 300;
 		myY = 200;
-		mySize = (int)(Math.random()*30)+5;
+		mySize = (int)(Math.random()*20)+5;
 	}
 	void move()
 	{
