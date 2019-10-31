@@ -6,17 +6,17 @@ boolean canSee = true;
 void setup()
 {
 	size(600,600);
-	boom = new Particle[500];
+	boom = new Particle[1000];
 	for (int i = 0; i < boom.length; i++) {
 		boom[i] = new Particle();
+		boom[0] = new OddballParticle();
+		boom[1] = new OddballParticle();
 	}
 }
 void draw()
 {
 	background(0);
 	if (canSee == true) {
-		//fill(187, 237, 237);
-		//rect(295,laserY-5,17,110,13);
 		fill(61, 191, 191);
 		rect(300,laserY,7,100,5);
 	}
@@ -60,10 +60,11 @@ class Particle
 	{
 		myColor = color((int)(Math.random()*255)+200,(int)(Math.random()*180),(int)(Math.random()*80)); 
 		myAngle = Math.random()*(2*Math.PI);
-		mySpeed = Math.random()*5;
+		mySpeed = Math.random()*
+		5;
 		myX = 300;
 		myY = 200;
-		mySize = (int)(Math.random()*20)+5;
+		mySize = (int)(Math.random()*20)+1;
 	}
 	void move()
 	{
@@ -79,9 +80,19 @@ class Particle
 
 }
 
-class OddballParticle //inherits from Particle
+class OddballParticle extends Particle
 {
-	//your code here
+	OddballParticle()
+	{
+		myColor = color(150, 146, 135,150);
+		mySpeed = Math.random()*2;
+	}
+	void show() 
+	{
+		fill(myColor);
+		arc((float)myX, (float)myY,50,50,0,5*PI/6);
+
+	}
 }
 
 
