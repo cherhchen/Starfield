@@ -6,7 +6,7 @@ boolean canSee = true;
 void setup()
 {
 	size(600,600);
-	boom = new Particle[1000];
+	boom = new Particle[2000];
 	for (int i = 0; i < boom.length; i++) {
 		boom[i] = new Particle();
 		boom[0] = new OddballParticle();
@@ -23,7 +23,7 @@ void draw()
 	if (laserShot == true) {
 		laserY-=5;
 	}
-	if (laserY <= 330) {
+	if (laserY <= 320) {
 		shot = true;
 		canSee = false;
 	}
